@@ -1,0 +1,21 @@
+volumes:
+  postgres_data:
+
+
+services:
+  db:
+    restart: always
+    image: postgres:15.0
+    container_name: spring_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - envs/.env.local.db
+
+  adminer:
+    restart: always
+    image: adminer
+    ports:
+      - "8085:8080"
