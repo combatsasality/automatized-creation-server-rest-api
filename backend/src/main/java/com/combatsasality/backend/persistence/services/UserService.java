@@ -41,6 +41,10 @@ public class UserService {
     public boolean authenticateUser(String username, String password) {
         User user = this.userRepository.findByUsername(username);
 
+        if (user == null) {
+            return false;
+        }
+
         return user.authenticate(password);
     }
 

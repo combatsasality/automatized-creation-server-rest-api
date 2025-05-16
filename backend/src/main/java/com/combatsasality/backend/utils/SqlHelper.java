@@ -113,7 +113,7 @@ public class SqlHelper {
         
         for (String column : data.keySet()) {
             if (!existingColumns.contains(column)) {
-                throw new IllegalArgumentException("Поле '" + column + "' не существует в таблице.");
+                throw new IllegalArgumentException("Рядка '" + column + "' не існує в таблиці.");
             }
         }
 
@@ -146,7 +146,7 @@ public class SqlHelper {
         
         for (String column : conditions.keySet()) {
             if (!existingColumns.contains(column)) {
-                throw new IllegalArgumentException("Поле '" + column + "' не существует в таблице.");
+                throw new IllegalArgumentException("Рядка '" + column + "' не існує в таблиці.");
             }
         }
 
