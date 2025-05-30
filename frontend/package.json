@@ -8,12 +8,17 @@
     "dev": "rsbuild dev --open",
     "format": "prettier --write .",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "rsbuild preview"
   },
   "dependencies": {
+    "@ant-design/icons": "5.x",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "antd": "^5.25.2",
+    "i18next": "^25.2.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^15.5.2",
     "react-router": "^7.6.0"
   },
   "devDependencies": {

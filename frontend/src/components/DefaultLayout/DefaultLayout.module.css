@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  border-radius: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 15%);
+  margin: 4px 0px;
+  padding: 0px 12px;
+
+  /* box-shadow: 2px 3px 13px rgba(0, 0, 0, 15%); */
+}
+.main {
+  margin: 12px 1% 0px 1%;
+}

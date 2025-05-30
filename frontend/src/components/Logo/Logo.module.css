@@ -1,0 +1,9 @@
+.changeableText {
+  color: #ff33fc;
+}
+.link {
+  color: var(--color-text) !important;
+}
+.link:hover {
+  color: #ff33fc !important;
+}
