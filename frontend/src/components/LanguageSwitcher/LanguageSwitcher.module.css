@@ -1,0 +1,12 @@
+.languageSwitcher {
+  min-width: 120px;
+}
+
+.languageSwitcher .ant-select-selector {
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+.languageSwitcher:hover .ant-select-selector {
+  border-color: var(--ant-color-primary) !important;
+}

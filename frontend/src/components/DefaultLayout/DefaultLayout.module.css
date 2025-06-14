@@ -1,15 +1,24 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  min-height: 64px;
-  border-radius: 2px;
-  border-bottom: 1px solid rgba(0, 0, 0, 15%);
-  padding: 4px 12px;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
   box-shadow: 2px 3px 13px rgba(0, 0, 0, 15%);
   background-color: white;
-  min-width: 306px;
+  border-bottom: 1px solid rgba(0, 0, 0, 15%);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
 .main {
-  margin: 24px 1% 0px 1%;
+  min-height: calc(100vh - 64px);
+  background: var(--ant-color-bg-layout);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }

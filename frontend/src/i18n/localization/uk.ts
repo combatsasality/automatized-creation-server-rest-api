@@ -5,6 +5,7 @@ export const uk = {
     translation: {
       defaultLayout: {
         login: "Увійти",
+        tables: "Таблиці",
       },
       loginView: {
         loginHeader: "Авторизація",
@@ -166,6 +167,9 @@ export const uk = {
       },
       common: {
         cancel: "Скасувати",
+        language: "Мова",
+        english: "Англійська",
+        ukrainian: "Українська",
       },
     },
   },

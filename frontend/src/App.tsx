@@ -32,7 +32,8 @@ const App = () => {
   const { i18n, t } = useTranslation();
 
   useEffect(() => {
-    i18n.changeLanguage("uk");
+    const savedLanguage = localStorage.getItem("language") || "uk";
+    i18n.changeLanguage(savedLanguage);
   }, [i18n]);
 
   return (
