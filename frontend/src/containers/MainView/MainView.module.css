@@ -1,17 +1,8 @@
 .container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
   min-height: 100vh;
 }
 
-.startText {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+/* Hero Section */
 .heroSection {
   display: flex;
   align-items: center;
@@ -28,7 +19,7 @@
 }
 
 .mainTitle {
-  font-size: 3.5rem !important;
+  font-size: clamp(2.5rem, 8vw, 3.5rem) !important;
   font-weight: 700 !important;
   line-height: 1.2 !important;
   margin-bottom: 24px !important;
@@ -39,7 +30,7 @@
 }
 
 .subText {
-  font-size: 1.2rem !important;
+  font-size: clamp(1rem, 3vw, 1.2rem) !important;
   color: #64748b !important;
   margin-bottom: 32px !important;
   line-height: 1.6 !important;
@@ -47,6 +38,9 @@
 
 .heroButtons {
   margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .heroVisual {
@@ -62,7 +56,8 @@
   box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
   overflow: hidden;
 }
 
@@ -105,9 +100,12 @@
 
 .codeLine {
   margin-bottom: 8px;
-  font-family: "Monaco", "Menlo", monospace;
+  color: #94a3b8;
+  font-family: "Monaco", "Menlo", "Consolas", monospace;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
 }
 
+/* Features Section */
 .featuresSection {
   padding: 80px 5% 60px;
   max-width: 1200px;
@@ -117,13 +115,13 @@
 .sectionTitle {
   text-align: center;
   margin-bottom: 16px !important;
-  font-size: 2.5rem !important;
+  font-size: clamp(2rem, 6vw, 2.5rem) !important;
   font-weight: 600 !important;
 }
 
 .sectionSubtitle {
   text-align: center;
-  font-size: 1.1rem !important;
+  font-size: clamp(1rem, 3vw, 1.1rem) !important;
   color: #64748b !important;
   margin-bottom: 60px !important;
   max-width: 600px;
@@ -154,15 +152,16 @@
 
 .featureContent {
   text-align: center;
-  padding: 20px;
+  padding: 24px 20px;
 }
 
 .featureIcon {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 8vw, 3rem);
   color: #667eea;
   margin-bottom: 20px;
 }
 
+/* Steps Section */
 .stepsSection {
   padding: 80px 5% 60px;
   max-width: 1200px;
@@ -184,7 +183,7 @@
 }
 
 .stepNumber {
-  font-size: 4rem;
+  font-size: clamp(3rem, 10vw, 4rem);
   font-weight: 700;
   margin-bottom: 20px;
   opacity: 0.8;
@@ -192,6 +191,7 @@
 
 .stepContent h4 {
   margin-bottom: 12px !important;
+  font-size: clamp(1.1rem, 4vw, 1.3rem) !important;
 }
 
 .stepArrow {
@@ -203,20 +203,22 @@
   color: #94a3b8;
 }
 
+/* CTA Section */
 .ctaSection {
   padding: 80px 5%;
   text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .ctaTitle {
-  color: black !important;
-  font-size: 2.5rem !important;
+  color: white !important;
+  font-size: clamp(2rem, 6vw, 2.5rem) !important;
   margin-bottom: 16px !important;
 }
 
 .ctaSubtitle {
-  color: rgba(0, 0, 0, 0.9) !important;
-  font-size: 1.1rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: clamp(1rem, 3vw, 1.1rem) !important;
   margin-bottom: 32px !important;
   max-width: 600px;
   margin-left: auto;
@@ -228,13 +230,36 @@
   border: none !important;
   color: #667eea !important;
   font-weight: 600 !important;
+  min-height: 48px !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
 }
 
 .ctaButton:hover {
   background: rgba(255, 255, 255, 0.9) !important;
   color: #667eea !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .heroSection {
+    padding: 70px 4% 50px;
+    gap: 50px;
+  }
+
+  .featuresSection,
+  .stepsSection {
+    padding: 70px 4% 50px;
+  }
+
+  .ctaSection {
+    padding: 70px 4%;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
   .heroSection {
     flex-direction: column;
@@ -243,8 +268,19 @@
     gap: 40px;
   }
 
-  .mainTitle {
-    font-size: 2.5rem !important;
+  .heroContent {
+    max-width: 100%;
+  }
+
+  .heroButtons {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .heroButtons .ant-btn {
+    min-height: 48px !important;
+    padding: 12px 24px !important;
+    font-size: 16px !important;
   }
 
   .stepsContainer {
@@ -258,17 +294,7 @@
 
   .codeBlock {
     width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .mainTitle {
-    font-size: 2rem !important;
-  }
-
-  .heroSection {
-    padding: 40px 5%;
+    max-width: 350px;
   }
 
   .featuresSection,
@@ -278,5 +304,59 @@
 
   .ctaSection {
     padding: 60px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 40px 5% 30px;
+    gap: 30px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .heroButtons .ant-btn {
+    width: 100%;
+    max-width: 280px;
+    min-height: 52px !important;
+    padding: 14px 24px !important;
+    font-size: 16px !important;
+  }
+
+  .featuresSection,
+  .stepsSection {
+    padding: 50px 5% 30px;
+  }
+
+  .ctaSection {
+    padding: 50px 5%;
+  }
+
+  .codeBlock {
+    max-width: 300px;
+  }
+
+  .featureContent {
+    padding: 20px 16px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .heroSection {
+    padding: 30px 4% 20px;
+  }
+
+  .heroButtons .ant-btn {
+    max-width: 100%;
+    font-size: 15px !important;
+  }
+
+  .codeBlock {
+    max-width: 280px;
   }
 }

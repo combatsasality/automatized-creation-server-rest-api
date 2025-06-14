@@ -2,10 +2,152 @@
   margin: 0 12%;
   padding: 2%;
   background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent content from overflowing */
+  box-sizing: border-box;
 }
+
 .buttons {
   display: flex;
-  justify-content: end;
-  margin-bottom: 8px;
+  justify-content: flex-end;
+  margin-bottom: 16px;
   gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.addButton {
+  order: 1;
+  white-space: nowrap;
+  min-width: 0; /* Allow button to shrink if needed */
+}
+
+.deleteButton {
+  order: 2;
+  white-space: nowrap;
+  min-width: 0; /* Allow button to shrink if needed */
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .container {
+    margin: 0 6%;
+    padding: 16px;
+  }
+
+  .buttons {
+    gap: 6px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .container {
+    margin: 0 3%;
+    padding: 12px;
+    border-radius: 4px;
+  }
+
+  .buttons {
+    justify-content: center;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .addButton,
+  .deleteButton {
+    flex: 1;
+    max-width: 150px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0 2%;
+    padding: 8px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .addButton,
+  .deleteButton {
+    width: 100%;
+    max-width: 200px;
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .addButton {
+    order: 1;
+  }
+
+  .deleteButton {
+    order: 2;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .container {
+    margin: 0 1%;
+    padding: 6px;
+  }
+
+  .addButton,
+  .deleteButton {
+    max-width: 100%;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* Table responsive overrides */
+@media (max-width: 768px) {
+  .container :global(.ant-table-wrapper) {
+    overflow-x: auto;
+    margin: 0 -8px; /* Compensate for container padding */
+    padding: 0 8px;
+  }
+
+  .container :global(.ant-table) {
+    min-width: 600px;
+  }
+
+  .container :global(.ant-table-thead > tr > th) {
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+
+  .container :global(.ant-table-tbody > tr > td) {
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container :global(.ant-table-thead > tr > th) {
+    padding: 6px 2px;
+    font-size: 13px;
+  }
+
+  .container :global(.ant-table-tbody > tr > td) {
+    padding: 6px 2px;
+    font-size: 13px;
+  }
+
+  .container :global(.ant-table-selection-column) {
+    width: 32px;
+  }
+
+  .container :global(.ant-checkbox-wrapper) {
+    margin: 0;
+  }
 }

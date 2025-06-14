@@ -1,6 +1,5 @@
-import { FC, useContext, useEffect } from "react";
-
-import { Avatar, Badge, Button, Skeleton, Space } from "antd";
+import { FC, useContext, useEffect, useState } from "react";
+import { Avatar, Button, Skeleton, Space, Drawer, Menu } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link, Outlet, useNavigate } from "react-router";
 
@@ -8,7 +7,7 @@ import style from "./DefaultLayout.module.css";
 import { Logo } from "../Logo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { AuthenticationContext, UserContext } from "../../context";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, MenuOutlined } from "@ant-design/icons";
 
 export const DefaultLayout: FC<DefaultLayoutProps> = ({
   messageApi,
@@ -18,6 +17,7 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const { auth, setAuth } = useContext(AuthenticationContext);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
@@ -50,36 +50,106 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({
     }
   }, []);
 
+  const mobileMenuItems = [
+    ...(auth.isAuthenticated
+      ? [
+          {
+            key: "tables",
+            label: t("defaultLayout.tables"),
+            onClick: () => {
+              navigate("/table/");
+              setMobileMenuOpen(false);
+            },
+          },
+        ]
+      : []),
+    {
+      key: "language",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <span>{t("common.language")}</span>
+          <LanguageSwitcher />
+        </div>
+      ),
+    },
+  ];
+
   return (
     <>
       <header className={style.header}>
         <Logo />
-        <Space size="middle">
-          <LanguageSwitcher />
-          {auth.isAuthenticated && (
-            <div>
-              <Button type="text">
-                <Link to="/table/">{t("defaultLayout.tables") || "Таблиці"}</Link>
+
+        {/* Desktop Menu */}
+        <div className={style.desktopMenu}>
+          <Space size="middle" className={style.headerActions}>
+            <LanguageSwitcher />
+            {auth.isAuthenticated && (
+              <Button type="text" className={style.tableButton}>
+                <Link to="/table/">{t("defaultLayout.tables")}</Link>
               </Button>
-            </div>
-          )}
-          {auth.isAuthenticating && <Skeleton.Avatar active size="large" />}
-          {auth.isAuthenticated && !auth.isAuthenticating && (
-            <Link to="/profile/">
-              <Avatar icon={<UserOutlined />} size="large" />
-            </Link>
-          )}
-          {!auth.isAuthenticated && !auth.isAuthenticating && (
-            <Button
-              onClick={() => {
-                navigate("/login/");
-              }}
-            >
-              {t("defaultLayout.login")}
-            </Button>
-          )}
-        </Space>
+            )}
+            {auth.isAuthenticating && <Skeleton.Avatar active size="default" />}
+            {auth.isAuthenticated && !auth.isAuthenticating && (
+              <Link to="/profile/">
+                <Avatar icon={<UserOutlined />} size="default" />
+              </Link>
+            )}
+            {!auth.isAuthenticated && !auth.isAuthenticating && (
+              <Button size="small" onClick={() => navigate("/login/")}>
+                {t("defaultLayout.login")}
+              </Button>
+            )}
+          </Space>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className={style.mobileMenu}>
+          <Button
+            type="text"
+            icon={<MenuOutlined />}
+            onClick={() => setMobileMenuOpen(true)}
+            className={style.mobileMenuButton}
+            size="large"
+          />
+        </div>
       </header>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <Logo />
+          </div>
+        }
+        placement="right"
+        onClose={() => setMobileMenuOpen(false)}
+        open={mobileMenuOpen}
+        className={style.mobileDrawer}
+        width={280}
+      >
+        <Menu items={mobileMenuItems} mode="vertical" style={{ border: "none" }} />
+        {auth.isAuthenticated && !auth.isAuthenticating && (
+          <div
+            style={{
+              padding: "16px",
+              borderTop: "1px solid #f0f0f0",
+              marginTop: "auto",
+            }}
+          >
+            <Button
+              type="text"
+              icon={<UserOutlined />}
+              onClick={() => {
+                navigate("/profile/");
+                setMobileMenuOpen(false);
+              }}
+              style={{ width: "100%" }}
+            >
+              {t("profileLayout.general")}
+            </Button>
+          </div>
+        )}
+      </Drawer>
 
       <main className={style.main}>
         <Outlet context={{ messageApi, notificationApi }} />

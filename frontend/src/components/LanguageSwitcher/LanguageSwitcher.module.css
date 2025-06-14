@@ -10,3 +10,46 @@
 .languageSwitcher:hover .ant-select-selector {
   border-color: var(--ant-color-primary) !important;
 }
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .languageSwitcher {
+    min-width: 110px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .languageSwitcher {
+    min-width: 100px;
+  }
+
+  .languageSwitcher .ant-select-selector {
+    height: 36px !important;
+    font-size: 14px !important;
+  }
+
+  .languageSwitcher .ant-select-selection-item {
+    line-height: 34px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .languageSwitcher {
+    min-width: 90px;
+  }
+
+  .languageSwitcher .ant-select-selector {
+    height: 32px !important;
+    font-size: 13px !important;
+    padding: 0 8px !important;
+  }
+
+  .languageSwitcher .ant-select-selection-item {
+    line-height: 30px !important;
+  }
+
+  .languageSwitcher .ant-select-arrow {
+    font-size: 12px !important;
+  }
+}
