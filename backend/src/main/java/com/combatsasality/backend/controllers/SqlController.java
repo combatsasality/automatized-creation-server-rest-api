@@ -55,17 +55,30 @@ public class SqlController {
         return ResponseEntity.ok(new ApiResponse("", dtoTables));
     }
 
+    @GetMapping("/name")
+    public ResponseEntity<ApiResponse> get(@RequestParam String tableName, Authentication authentication) {
+        String username = authentication.getName();
+
+        CreatedTable table = createdTableService.findByName(tableName + "__" + username);
+
+        if (table == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("api.tableNotExists"));
+        }
+
+        return ResponseEntity.ok(new ApiResponse("", table));
+    }
+
     @PostMapping
     public ResponseEntity<ApiResponse> create(@RequestBody @Valid TableCreateDto table, Authentication authentication) {
-        List<Field> fields = table.getFields();
+
 
         CreatedTableDto result = sqlHelper.createTable(table, authentication.getName());
 
         if (result == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Таблиця вже існує"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("api.tableExists"));
         }
 
-        return ResponseEntity.ok(new ApiResponse("Таблица успішно створена", result));
+        return ResponseEntity.ok(new ApiResponse("api.createdTable", result));
     }
 
     @PutMapping
@@ -76,7 +89,7 @@ public class SqlController {
         CreatedTable table = this.createdTableService.findByName(postDto.getTableName() + "__" + username);
 
         if (table == null || !table.getOwner().equals(user)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Таблиці не існує"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("api.tableNotExists"));
         }
 
         table.setAvailableMethods(postDto.getMethods());
@@ -84,24 +97,37 @@ public class SqlController {
         this.createdTableService.save(table);
 
 
-        return ResponseEntity.ok(new ApiResponse("Таблиця успішно змінена"));
+        return ResponseEntity.ok(new ApiResponse("api.tableEdited"));
     }
 
     @DeleteMapping
-    public ResponseEntity<ApiResponse> delete(@RequestParam @Valid String name, Authentication authentication) {
+    public ResponseEntity<ApiResponse> delete(@RequestBody @Valid List<String> names, Authentication authentication) {
         String username = authentication.getName();
         User user = this.userService.findByUsername(username);
 
-        CreatedTable table = this.createdTableService.findByName(name + "__" + username);
+        List<String> failedDeletes = new ArrayList<>();
+        List<String> deletedTables = new ArrayList<>();
 
-        if (table == null || !table.getOwner().equals(user)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Таблиці не існує"));
+        for (String name : names) {
+            CreatedTable table = this.createdTableService.findByName(name + "__" + username);
+
+            if (table == null || !table.getOwner().equals(user)) {
+                failedDeletes.add(name);
+                continue;
+            }
+
+            this.createdTableService.delete(table);
+            this.sqlHelper.deleteTable(table.getName());
+            deletedTables.add(name);
         }
 
-        this.createdTableService.delete(table);
-        this.sqlHelper.deleteTable(table.getName());
+        if (!failedDeletes.isEmpty()) {
+            String message = "Can't delete tables: " + String.join(", ", failedDeletes);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(message));
+        }
 
-        return ResponseEntity.ok(new ApiResponse("Таблиця успішно видалено"));
+        String successMessage = "Deleted tables: " + String.join(", ", deletedTables);
+        return ResponseEntity.ok(new ApiResponse(successMessage));
     }
 
 

@@ -29,7 +29,7 @@ public class CustomController {
         );
 
         if (data.isEmpty()) {
-            return ResponseEntity.ok(new ApiResponse("Таблиця пуста"));
+            return ResponseEntity.ok(new ApiResponse("api.tableEmpty"));
         }
 
 
@@ -46,11 +46,11 @@ public class CustomController {
 
         try {
             sqlHelper.insertRowIntoDynamicTable(fullTableName, body);
-            return ResponseEntity.ok(new ApiResponse("Запис успішно додано"));
+            return ResponseEntity.ok(new ApiResponse("api.rowAdded"));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new ApiResponse("Помилка: " + e.getMessage()));
+            return ResponseEntity.badRequest().body(new ApiResponse("Error " + e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(new ApiResponse("Невідома помилка: " + e.getMessage()));
+            return ResponseEntity.status(500).body(new ApiResponse("Unknown error: " + e.getMessage()));
         }
     }
 
@@ -64,11 +64,11 @@ public class CustomController {
 
         try {
             sqlHelper.deleteRowFromDynamicTable(fullTableName, conditions);
-            return ResponseEntity.ok(new ApiResponse("Запис успішно видалено"));
+            return ResponseEntity.ok(new ApiResponse("api.rowDeleted"));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new ApiResponse("Помилка: " + e.getMessage()));
+            return ResponseEntity.badRequest().body(new ApiResponse("Error: " + e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(new ApiResponse("Невідома помилка: " + e.getMessage()));
+            return ResponseEntity.status(500).body(new ApiResponse("Unknown error: " + e.getMessage()));
         }
     }
 

@@ -5,6 +5,6 @@ import { us, uk } from "./localization";
 
 i18next.use(initReactI18next).init({
   lng: "us",
-  // debug: true,
+
   resources: { ...us, ...uk },
 });

@@ -63,6 +63,7 @@ public class SqlHelper {
         entityManager.createNativeQuery(createSql.toString()).executeUpdate();
 
         CreatedTable createdTable = this.createdTableService.create(tableName);
+        createdTable.setAvailableMethods(table.getMethods());
         User owner = this.userService.findByUsername(username);
 
 

@@ -1,0 +1,11 @@
+.container {
+  margin: 0 12%;
+  padding: 2%;
+  background-color: white;
+}
+.buttons {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 8px;
+  gap: 8px;
+}

@@ -175,8 +175,10 @@ class ControllerTests {
         when(userService.findByUsername(username)).thenReturn(user);
         when(createdTableService.findByName("table1__testuser")).thenReturn(table);
 
-        
-        ResponseEntity<ApiResponse> response = sqlController.delete("table1", authentication);
+        List<String> deleteTables = new ArrayList<>();
+        deleteTables.add("table1");
+
+        ResponseEntity<ApiResponse> response = sqlController.delete(deleteTables, authentication);
 
         
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -193,8 +195,10 @@ class ControllerTests {
         when(userService.findByUsername(username)).thenReturn(new User());
         when(createdTableService.findByName("table1__testuser")).thenReturn(null);
 
-        
-        ResponseEntity<ApiResponse> response = sqlController.delete("table1", authentication);
+        List<String> deleteTables = new ArrayList<>();
+        deleteTables.add("table1");
+
+        ResponseEntity<ApiResponse> response = sqlController.delete(deleteTables, authentication);
 
         
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());

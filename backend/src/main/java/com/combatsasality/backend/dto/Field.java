@@ -11,7 +11,7 @@ public class Field {
     private Type type;
     private boolean isCanBeNull = true;
     private boolean isUnique = false;
-//    private String _default;
+
 
     public Field() {}
 
@@ -53,15 +53,15 @@ public class Field {
         isUnique = unique;
     }
 
-    //    public void set_default(String _default) {
-//        this._default = _default;
-//    }
-//
-//    public String get_default() {
-//        return _default;
-//    }
+    
 
-    // TODO: add more types
+
+//
+
+
+
+
+    
     public enum Type {
         TEXT,
         BOOLEAN,

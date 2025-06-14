@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-self: center;
+  background-color: white;
+  width: 40%;
+  min-width: 368px;
+  min-height: 300px;
+}
+.childrenContainer {
+  padding: 16px;
+  width: 100%;
+}
+
+/* @media only screen and (max-width: 756px) {
+  .container {
+    width: 300px;
+  }
+} */

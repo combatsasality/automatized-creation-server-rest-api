@@ -1,0 +1,4 @@
+.form :disabled {
+  color: black;
+  background-color: white;
+}

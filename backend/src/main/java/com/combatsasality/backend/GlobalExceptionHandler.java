@@ -1,5 +1,7 @@
 package com.combatsasality.backend;
 
+import com.combatsasality.backend.persistence.exceptions.BadValidationException;
+import com.combatsasality.backend.utils.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -28,8 +30,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(BadValidationException.class)
+    public ResponseEntity<ApiResponse> handleValidationPersistenceExceptions(BadValidationException ex) {
+        return new ResponseEntity<>(new ApiResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllOtherExceptions(Exception ex) {
-        return new ResponseEntity<>("Виникла помилка: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ApiResponse> handleAllOtherExceptions(Exception ex) {
+        return new ResponseEntity<>(new ApiResponse(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

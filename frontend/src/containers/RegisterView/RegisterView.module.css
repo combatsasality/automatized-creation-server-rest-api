@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.innerContainer {
+  background-color: white;
+  width: 430px;
+}
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 15%);
+  padding: 12px 24px;
+}
+.form {
+  margin-top: 8px;
+  padding: 4px 24px;
+}
+.linkContainer {
+  justify-content: end;
+  margin: 0px 12px 12px 12px;
+}

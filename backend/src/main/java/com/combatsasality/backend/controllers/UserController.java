@@ -25,6 +25,7 @@ public class UserController {
         this.jwtUtil = jwtUtil;
     }
 
+
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
@@ -35,18 +36,18 @@ public class UserController {
         try {
             userService.createUser(userDto.getUsername(), userDto.getPassword());
         } catch (AlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Користувач с таким іменем вже існує"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("api.userExists"));
         }
 
 
-        return ResponseEntity.ok(new ApiResponse("Користувач успішно створений"));
+        return ResponseEntity.ok(new ApiResponse("api.createdUser"));
     }
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> authenticate(@RequestBody UserDto userDto) {
         if (userService.authenticateUser(userDto.getUsername(), userDto.getPassword())) {
-            return ResponseEntity.ok(new ApiResponse("Ви успішно авторизовані", jwtUtil.generateToken(userDto.getUsername())));
+            return ResponseEntity.ok(new ApiResponse("api.authorized", jwtUtil.generateToken(userDto.getUsername())));
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Невірний логін або пароль"));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("api.wrongPassOrUsername"));
     }
 }

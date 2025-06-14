@@ -12,4 +12,5 @@ public interface CreatedTableRepository extends JpaRepository<CreatedTable, UUID
     CreatedTable findByName(String name);
     List<CreatedTable> findByOwner(User owner);
 
+
 }

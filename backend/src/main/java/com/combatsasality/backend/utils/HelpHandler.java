@@ -18,7 +18,7 @@ public class HelpHandler {
 
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            // Если алгоритм не найден, выбрасываем исключение
+            
             throw new RuntimeException("SHA-256 algorithm not found", e);
         }
     }

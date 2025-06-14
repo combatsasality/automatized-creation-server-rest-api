@@ -1,5 +1,6 @@
 package com.combatsasality.backend.dto;
 
+import com.combatsasality.backend.persistence.models.CreatedTable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,18 @@ public class TableCreateDto {
     @NotNull(message = "Список полів не може бути пустим")
     @Valid
     private List<Field> fields;
+
+    @NotNull(message= "Методи не можуть бути пустими")
+    @Valid
+    private List<CreatedTable.Methods> methods;
+
+    public List<CreatedTable.Methods> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(List<CreatedTable.Methods> methods) {
+        this.methods = methods;
+    }
 
     public String getTableName() {
         return tableName;

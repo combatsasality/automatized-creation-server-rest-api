@@ -1,6 +1,8 @@
 package com.combatsasality.backend.persistence.services;
 
 import com.combatsasality.backend.persistence.exceptions.AlreadyExistsException;
+import com.combatsasality.backend.persistence.exceptions.BadValidationException;
+import com.combatsasality.backend.persistence.models.CreatedTable;
 import com.combatsasality.backend.persistence.models.User;
 import com.combatsasality.backend.persistence.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,13 @@ public class UserService {
             throw new AlreadyExistsException();
         }
 
+        if (password.length() < 8 || password.length() > 24) {
+            throw new BadValidationException("api.lessThen8");
+        }
+
+        if (!password.matches(".*[A-Za-z].*")) {
+            throw new BadValidationException("api.containLetter");
+        }
 
         User user = new User(username);
         user.setRawPassword(password);
@@ -46,6 +55,10 @@ public class UserService {
         }
 
         return user.authenticate(password);
+    }
+
+    public User save(User user) {
+        return this.userRepository.save(user);
     }
 
 
