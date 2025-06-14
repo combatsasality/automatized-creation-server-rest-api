@@ -123,7 +123,7 @@ export const RegisterView = () => {
               <Input.Password prefix={<LockOutlined />} />
             </Form.Item>
             <Flex className={style.linkContainer}>
-              <Link to="/register/">
+              <Link to="/login/">
                 <LinkAntd>{t("registerView.login")}</LinkAntd>
               </Link>
             </Flex>

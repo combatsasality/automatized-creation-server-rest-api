@@ -7,12 +7,100 @@
 .form {
   margin-top: 24px;
 }
+
 .fieldContainer {
   width: 100%;
   padding: 0px 16px;
 }
+
 .menu {
   display: inline-block;
   width: 100%;
   margin-bottom: 12px;
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    margin: 0 6%;
+    padding: 16px;
+  }
+
+  .form {
+    margin-top: 20px;
+  }
+
+  .fieldContainer {
+    padding: 0px 12px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin: 0 4%;
+    padding: 12px;
+  }
+
+  .form {
+    margin-top: 16px;
+  }
+
+  .fieldContainer {
+    padding: 0px 8px;
+  }
+
+  /* Stack form items vertically on mobile */
+  .form :global(.ant-flex) {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Make transfer component responsive */
+  .form :global(.ant-transfer) {
+    flex-direction: column;
+  }
+
+  .form :global(.ant-transfer-list) {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px;
+  }
+
+  .form :global(.ant-transfer-operation) {
+    margin: 8px 0;
+    align-self: center;
+  }
+
+  /* Adjust buttons for mobile */
+  .form :global(.ant-btn) {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0 2%;
+    padding: 8px;
+  }
+
+  .form {
+    margin-top: 12px;
+  }
+
+  .fieldContainer {
+    padding: 0px 4px;
+  }
+
+  /* Full width buttons on small screens */
+  .form :global(.ant-form-item:last-child .ant-btn) {
+    width: 100%;
+    margin-bottom: 8px;
+    margin-left: 0 !important;
+  }
+
+  .form :global(.ant-form-item:last-child .ant-btn:first-child) {
+    margin-bottom: 12px;
+  }
 }

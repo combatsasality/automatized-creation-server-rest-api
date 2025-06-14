@@ -149,6 +149,26 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({
             </Button>
           </div>
         )}
+        {!auth.isAuthenticated && !auth.isAuthenticating && (
+          <div
+            style={{
+              padding: "16px",
+              borderTop: "1px solid #f0f0f0",
+              marginTop: "auto",
+            }}
+          >
+            <Button
+              type="primary"
+              onClick={() => {
+                navigate("/login/");
+                setMobileMenuOpen(false);
+              }}
+              style={{ width: "100%" }}
+            >
+              {t("defaultLayout.login")}
+            </Button>
+          </div>
+        )}
       </Drawer>
 
       <main className={style.main}>

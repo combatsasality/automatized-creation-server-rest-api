@@ -7,12 +7,176 @@
 .form {
   margin-top: 24px;
 }
+
 .fieldContainer {
   width: 100%;
   padding: 0px 16px;
 }
+
 .menu {
   display: inline-block;
   width: 100%;
   margin-bottom: 12px;
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    margin: 0 6%;
+    padding: 16px;
+
+    margin-bottom: 100px;
+  }
+
+  .form {
+    margin-top: 20px;
+  }
+
+  .fieldContainer {
+    padding: 0px 12px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin: 0 4%;
+    padding: 12px;
+
+    margin-bottom: 100px;
+  }
+
+  .form {
+    margin-top: 16px;
+  }
+
+  .fieldContainer {
+    padding: 0px 8px;
+  }
+
+  /* Stack main form sections vertically */
+  .form :global(.ant-flex) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Transfer component mobile styles */
+  .form :global(.ant-transfer) {
+    flex-direction: column;
+  }
+
+  .form :global(.ant-transfer-list) {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px;
+  }
+
+  .form :global(.ant-transfer-operation) {
+    margin: 8px 0;
+    align-self: center;
+  }
+
+  /* Menu mobile styles */
+  .menu :global(.ant-menu-horizontal) {
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .menu :global(.ant-menu-item) {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  /* Field control buttons */
+  .fieldContainer :global(.ant-flex) {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .fieldContainer :global(.ant-btn) {
+    min-height: 44px;
+  }
+
+  /* Form inputs */
+  .form :global(.ant-input),
+  .form :global(.ant-select-selector) {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .form :global(.ant-btn) {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0 2%;
+    padding: 8px;
+
+    margin-bottom: 100px;
+  }
+
+  .form {
+    margin-top: 12px;
+  }
+
+  .fieldContainer {
+    padding: 0px 4px;
+  }
+
+  /* Menu scrollable on very small screens */
+  .menu {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu :global(.ant-menu-horizontal) {
+    min-width: 100%;
+    white-space: nowrap;
+  }
+
+  /* Stack field control buttons vertically */
+  .fieldContainer :global(.ant-flex) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fieldContainer :global(.ant-menu) {
+    margin-bottom: 12px;
+  }
+
+  .fieldContainer :global(.ant-btn) {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  /* Form layout adjustments */
+  .form :global(.ant-form-item-label) {
+    font-size: 15px;
+  }
+
+  /* Submit button full width */
+  .form :global(.ant-form-item:last-child .ant-btn) {
+    width: 100%;
+    min-height: 48px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .container {
+    margin: 0 1%;
+    padding: 6px;
+  }
+
+  .fieldContainer {
+    padding: 0px 2px;
+  }
+
+  .menu :global(.ant-menu-item) {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
 }

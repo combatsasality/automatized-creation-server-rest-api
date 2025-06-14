@@ -77,7 +77,10 @@ export const LoginView = () => {
               <Input.Password prefix={<LockOutlined />} />
             </Form.Item>
             <Flex className={style.linkContainer}>
-              <Checkbox onChange={(e) => setRememberMe(e.target.checked)}>
+              <Checkbox
+                style={{ height: "20px" }}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              >
                 {t("loginView.rememberMe")}
               </Checkbox>
               <Link to="/register/">
