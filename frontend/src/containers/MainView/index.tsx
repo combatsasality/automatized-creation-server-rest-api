@@ -12,6 +12,8 @@ import {
 
 import style from "./MainView.module.css";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { AuthenticationContext } from "../../context";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -21,6 +23,7 @@ export const MainView = () => {
   const {
     token: { colorPrimary, colorBgContainer },
   } = theme.useToken();
+  const { auth } = useContext(AuthenticationContext);
 
   const features = [
     {
@@ -88,7 +91,13 @@ export const MainView = () => {
               type="primary"
               size="large"
               icon={<RocketOutlined />}
-              onClick={() => navigate("/table/")}
+              onClick={() => {
+                if (auth.isAuthenticated && !auth.isAuthenticating) {
+                  navigate("/table/");
+                } else {
+                  navigate("/login/");
+                }
+              }}
             >
               {t("mainView.getStarted")}
             </Button>
