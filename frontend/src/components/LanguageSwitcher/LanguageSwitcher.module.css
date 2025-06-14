@@ -11,14 +11,12 @@
   border-color: var(--ant-color-primary) !important;
 }
 
-/* Tablet styles */
 @media (max-width: 1024px) {
   .languageSwitcher {
     min-width: 110px;
   }
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .languageSwitcher {
     min-width: 100px;

@@ -79,7 +79,6 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({
       <header className={style.header}>
         <Logo />
 
-        {/* Desktop Menu */}
         <div className={style.desktopMenu}>
           <Space size="middle" className={style.headerActions}>
             <LanguageSwitcher />
@@ -102,7 +101,6 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({
           </Space>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className={style.mobileMenu}>
           <Button
             type="text"
@@ -114,7 +112,6 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({
         </div>
       </header>
 
-      {/* Mobile Drawer */}
       <Drawer
         title={
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>

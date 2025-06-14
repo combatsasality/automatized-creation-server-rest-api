@@ -34,17 +34,14 @@ h6 {
   line-height: 1.2;
 }
 
-/* Base responsive typography */
 html {
   font-size: 16px;
 }
 
-/* Prevent horizontal scroll on mobile */
 * {
   box-sizing: border-box;
 }
 
-/* Touch targets for mobile */
 button,
 a,
 input,
@@ -54,7 +51,6 @@ textarea {
   touch-action: manipulation;
 }
 
-/* Improved tap targets for mobile */
 @media (max-width: 768px) {
   html {
     font-size: 15px;
@@ -70,7 +66,7 @@ textarea {
   select,
   textarea {
     min-height: 48px;
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
   }
 }
 
@@ -86,13 +82,11 @@ textarea {
   }
 }
 
-/* Responsive images */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Ant Design mobile overrides */
 @media (max-width: 768px) {
   .ant-btn {
     font-size: 15px !important;

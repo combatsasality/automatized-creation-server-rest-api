@@ -2,7 +2,6 @@
   min-height: 100vh;
 }
 
-/* Hero Section */
 .heroSection {
   display: flex;
   align-items: center;
@@ -105,7 +104,6 @@
   font-size: clamp(0.75rem, 2vw, 0.9rem);
 }
 
-/* Features Section */
 .featuresSection {
   padding: 80px 5% 60px;
   max-width: 1200px;
@@ -161,7 +159,6 @@
   margin-bottom: 20px;
 }
 
-/* Steps Section */
 .stepsSection {
   padding: 80px 5% 60px;
   max-width: 1200px;
@@ -203,7 +200,6 @@
   color: #94a3b8;
 }
 
-/* CTA Section */
 .ctaSection {
   padding: 80px 5%;
   text-align: center;
@@ -242,7 +238,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Tablet styles */
 @media (max-width: 1024px) {
   .heroSection {
     padding: 70px 4% 50px;
@@ -259,7 +254,6 @@
   }
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .heroSection {
     flex-direction: column;
@@ -345,7 +339,6 @@
   }
 }
 
-/* Extra small screens */
 @media (max-width: 360px) {
   .heroSection {
     padding: 30px 4% 20px;

@@ -4,7 +4,7 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Prevent content from overflowing */
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -21,16 +21,15 @@
 .addButton {
   order: 1;
   white-space: nowrap;
-  min-width: 0; /* Allow button to shrink if needed */
+  min-width: 0;
 }
 
 .deleteButton {
   order: 2;
   white-space: nowrap;
-  min-width: 0; /* Allow button to shrink if needed */
+  min-width: 0;
 }
 
-/* Tablet styles */
 @media (max-width: 1024px) {
   .container {
     margin: 0 6%;
@@ -42,7 +41,6 @@
   }
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .container {
     margin: 0 3%;
@@ -94,7 +92,6 @@
   }
 }
 
-/* Very small screens */
 @media (max-width: 360px) {
   .container {
     margin: 0 1%;
@@ -109,11 +106,10 @@
   }
 }
 
-/* Table responsive overrides */
 @media (max-width: 768px) {
   .container :global(.ant-table-wrapper) {
     overflow-x: auto;
-    margin: 0 -8px; /* Compensate for container padding */
+    margin: 0 -8px;
     padding: 0 8px;
   }
 
