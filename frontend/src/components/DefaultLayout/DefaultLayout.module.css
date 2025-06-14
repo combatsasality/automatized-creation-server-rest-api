@@ -14,7 +14,7 @@
 
 .main {
   min-height: calc(100vh - 64px);
-  background: var(--ant-color-bg-layout);
+  margin-top: 24px;
 }
 
 .headerActions {
