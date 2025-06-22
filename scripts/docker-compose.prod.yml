@@ -1,0 +1,50 @@
+version: "3.4"
+
+volumes:
+  postgres_data:
+  static_volume:
+
+services:
+  nginx:
+    restart: always
+    image: registry/nginx:1.0
+    container_name: nginx
+    build:
+      context: ../nginx
+      dockerfile: ../nginx/Dockerfile.prod
+    ports:
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend
+
+  frontend:
+    restart: always
+    image: registry/frontend:1.0
+    build:
+      context: ../frontend
+      dockerfile: ../frontend/Docker/Dockerfile.prod
+    container_name: frontend
+
+  backend:
+    restart: always
+    image: registry/backend:1.0
+    container_name: backend
+    build:
+      context: ../backend
+      dockerfile: ../backend/Docker/Dockerfile.prod
+    depends_on:
+      - db
+    env_file:
+      - envs/.env.prod.backend
+
+  db:
+    restart: always
+    image: postgres:15.0
+    container_name: site_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - envs/.env.prod.db

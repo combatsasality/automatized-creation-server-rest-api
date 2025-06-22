@@ -198,9 +198,8 @@ export const TableCreateView = () => {
         layout="vertical"
         requiredMark={false}
         className={style.form}
-        onFinishFailed={(errorInfo) => {
-          console.error("Failed:", errorInfo);
-        }}
+        onFinish={(values) => handleSubmit(values)}
+        form={mainForm}
       >
         <Form.Item
           label={t("tableCreateView.tableName")}

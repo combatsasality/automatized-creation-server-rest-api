@@ -1,5 +1,7 @@
 package com.combatsasality.backend.controllers;
 
+import com.combatsasality.backend.persistence.models.CreatedTable;
+import com.combatsasality.backend.persistence.services.CreatedTableService;
 import com.combatsasality.backend.utils.ApiResponse;
 import com.combatsasality.backend.utils.SqlHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +16,23 @@ import java.util.Map;
 public class CustomController {
 
     private final SqlHelper sqlHelper;
+    private final CreatedTableService createdTableService;
 
     @Autowired
-    public CustomController(SqlHelper sqlHelper) {
+    public CustomController(SqlHelper sqlHelper, CreatedTableService createdTableService) {
         this.sqlHelper = sqlHelper;
+        this.createdTableService = createdTableService;
     }
 
     @GetMapping("/{username}/{tableName}")
     public ResponseEntity<ApiResponse> get(
             @PathVariable String username, @PathVariable String tableName
     ) {
+        if (!this.createdTableService.findByName(tableName + "__" + username).getAvailableMethods().contains(CreatedTable.Methods.GET)) {
+            return ResponseEntity.status(403).body(new ApiResponse("Not permitted"));
+        }
+
+
         List<Map<String, Object>> data = sqlHelper.getRowsFromDynamicTable(
                 String.format("%s__%s", tableName, username)
         );
@@ -42,6 +51,10 @@ public class CustomController {
             @PathVariable String tableName,
             @RequestBody Map<String, Object> body
     ) {
+        if (!this.createdTableService.findByName(tableName + "__" + username).getAvailableMethods().contains(CreatedTable.Methods.POST)) {
+            return ResponseEntity.status(403).body(new ApiResponse("Not permitted"));
+        }
+
         String fullTableName = String.format("%s__%s", tableName, username);
 
         try {
@@ -60,6 +73,10 @@ public class CustomController {
             @PathVariable String tableName,
             @RequestBody Map<String, Object> conditions
     ) {
+        if (!this.createdTableService.findByName(tableName + "__" + username).getAvailableMethods().contains(CreatedTable.Methods.DELETE)) {
+            return ResponseEntity.status(403).body(new ApiResponse("Not permitted"));
+        }
+
         String fullTableName = String.format("%s__%s", tableName, username);
 
         try {
